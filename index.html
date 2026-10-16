@@ -124,6 +124,24 @@ footer{padding:38px 0 60px;border-top:1px solid var(--line);background:#000;}
 .footer-grid p{font-weight:300;}
 .reveal{opacity:0;transform:translateY(34px);transition:opacity .95s var(--slow),transform .95s var(--slow);}
 .reveal.in{opacity:1;transform:none;}
+@media(max-width:760px){
+nav{flex-wrap:wrap;gap:12px;}
+.nav-links{width:100%;order:3;gap:10px;font-size:13px;}
+.nav-cta{order:2;margin-left:auto;}
+.hero{min-height:100svh;}
+.hero-grid{padding-top:88px;gap:28px;}
+.hero-title{font-size:clamp(34px,12vw,48px);}
+.hero-lead{font-size:15px;}
+.motivation-banner{padding:20px;}
+.section-title{font-size:clamp(28px,8vw,38px);}
+.section-head{margin-bottom:24px;}
+.stats-grid,.cards,.works-grid,.reviews-grid,.contacts-grid{grid-template-columns:1fr;}
+.price-row{grid-template-columns:1fr;gap:8px;padding:16px 18px;}
+.hero-meta{padding:20px;gap:12px;}
+.form{padding:20px;}
+.form-actions .btn{width:100%;}
+.ticker span{font-size:10px;letter-spacing:.12em;}
+}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;}}
 </style></head>
 <body>

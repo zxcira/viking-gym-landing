@@ -23,7 +23,7 @@ nav{display:flex;align-items:center;gap:22px;padding:18px 0;}
 .hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.9)),radial-gradient(65% 45% at 20% 25%,rgba(255,43,34,.32),transparent 72%);}
 .hero-grid{position:relative;z-index:2;width:100%;max-width:1720px;min-width:0;margin-inline:auto;padding:132px clamp(20px,6vw,80px) 86px;display:grid;gap:52px;align-items:end;}
 @media(min-width:980px){.hero-grid{grid-template-columns:minmax(0,1.05fr) minmax(340px,420px);gap:64px;}}
-.hero-grid > div{text-align:center;}
+.hero-grid > div{text-align:center;min-width:0;max-width:100%;overflow-wrap:anywhere;}
 .hero-grid > div .eyebrow,.hero-grid > div .hero-title,.hero-grid > div .hero-lead{margin-inline:auto;}
 .hero-grid > div .hero-actions,.hero-grid > div .ticker{justify-content:center;}
 .hero-grid > div .motivation-banner{margin-inline:auto;}

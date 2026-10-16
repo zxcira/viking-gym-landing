@@ -20,8 +20,13 @@ nav{display:flex;align-items:center;gap:22px;padding:18px 0;}
 .hero video{opacity:.36;filter:brightness(.5) saturate(.8);}
 .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.5) saturate(.85);z-index:0;}
 .hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.9)),radial-gradient(65% 45% at 20% 25%,rgba(255,43,34,.32),transparent 72%);}
-.hero-grid{position:relative;z-index:2;width:100%;padding:132px 0 86px;display:grid;gap:48px;align-items:end;}
-@media(min-width:980px){.hero-grid{grid-template-columns:1.2fr .8fr;gap:56px;}}
+.hero-grid{position:relative;z-index:2;width:100%;max-width:min(100%,1720px);margin-inline:auto;padding:132px clamp(24px,9vw,128px) 86px;display:grid;gap:52px;align-items:end;}
+@media(min-width:980px){.hero-grid{grid-template-columns:minmax(0,1.05fr) minmax(340px,420px);gap:64px;}}
+.hero-grid > div{text-align:center;}
+.hero-grid > div .eyebrow,.hero-grid > div .hero-title,.hero-grid > div .hero-lead{margin-inline:auto;}
+.hero-grid > div .hero-actions,.hero-grid > div .ticker{justify-content:center;}
+.hero-grid > div .motivation-banner{margin-inline:auto;}
+.hero-meta{text-align:left;}
 .eyebrow{font:600 11px/1.6 Inter,monospace;letter-spacing:.22em;text-transform:uppercase;color:var(--red);margin-bottom:18px;}
 .hero-title{font:700 clamp(46px,8vw,118px)/.9 Unbounded,sans-serif;text-transform:uppercase;max-width:11ch;}
 .hero-title em{color:var(--red);font-style:normal;text-shadow:0 0 44px rgba(255,43,34,.25);}

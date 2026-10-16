@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Викинг — спорт-клуб в Екатеринбурге</title>
+  <meta name="description" content="Спорт-клуб «Викинг» в Екатеринбурге (ВИЗ, Красноуральская 23): тренажёрный зал, персональные тренировки, групповые занятия, бокс и каратэ. Ежедневно 10:00–22:00. Звонок: +7 909 702-30-23.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --hero-image: url('assets/photos/work-1.jpg');
+      --bg:#080808; --bg-elev:#101012; --surface:#15151a; --surface-2:#1c1c23;
+      --line:#272730; --line-strong:#3a3a46; --text:#f5f5f7; --sub:#a7a7b0;
+      --muted:#7a7a86; --accent:#ff3b30; --accent-2:#ff7058; --on-accent:#080302;
+      --radius:12px; --shadow:0 18px 40px rgba(0,0,0,.5);
+      --tap:44px; --shell:1180px; --ease:cubic-bezier(.2,.7,.3,1);
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{background:radial-gradient(1100px 700px at 85% -5%,#3a1a15 0%,transparent 58%),var(--bg);color:var(--text);font:400 16px/1.6 Inter,system-ui,sans-serif;overflow-x:hidden}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    button,input,textarea,select{font:inherit;color:inherit}
+    button{cursor:pointer;background:none;border:0}
+    :focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+    }
+    .skip{position:absolute;left:-999px;top:0;z-index:100;background:var(--accent);color:var(--on-accent);padding:10px 14px;font-weight:700}
+    .skip:focus{left:14px;top:14px}
+    header{position:sticky;top:0;z-index:20;background:rgba(8,8,8,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+    nav{max-width:var(--shell);margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:12px}
+    .brand-mark{
+      width:var(--tap);height:var(--tap);border-radius:10px;position:relative;overflow:hidden;
+      background:linear-gradient(145deg,#222,#0c0c0f);border:1px solid var(--line-strong);
+      display:grid;place-items:center;
+    }
+    .dumbbell{
+      width:30px;height:30px;fill:var(--accent);will-change:transform;transform-origin:center;
+      animation:dumbbellLift 3.2s cubic-bezier(.2,.7,.3,1) infinite;
+    }
+    @keyframes dumbbellLift{
+      0%,100%{transform:translateY(0) rotate(0deg)}
+      25%{transform:translateY(-2px) rotate(-8deg)}
+      50%{transform:translateY(-6px) rotate(0deg)}
+      75%{transform:translateY(-2px) rotate(8deg)}
+    }
+    .nav-links{display:flex;gap:18px;flex-wrap:wrap;margin-left:auto;font-size:14px;color:var(--sub)}
+    .nav-links a:hover{color:var(--text)}
+    .hero{position:relative;padding:110px 20px 70px;min-height:clamp(460px,60vw,760px);display:flex;align-items:center;overflow:hidden}
+    .hero::before{
+      content:"";position:absolute;inset:-18% -8% auto;height:135%;z-index:0;
+      background:radial-gradient(48% 38% at 74% 30%,rgba(255,59,48,.22),transparent 72%),radial-gradient(38% 32% at 12% 75%,rgba(255,59,48,.1),transparent 70%);
+    }
+    .hero::after{
+      content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+      background-image:var(--hero-image);background-size:cover;background-position:center;opacity:.22;
+      mix-blend-mode:luminosity;animation:heroZoom 22s ease-in-out infinite alternate;
+    }
+    @keyframes heroZoom{from{transform:scale(1)}to{transform:scale(1.06)}}
+    .hero-inner{position:relative;z-index:2;max-width:var(--shell);margin:0 auto;display:grid;gap:36px;width:100%}
+    @media(min-width:900px){.hero-inner{grid-template-columns:1.15fr .85fr;align-items:end}}
+    .hero h1{font:700 clamp(36px,6vw,72px)/1 "Russo One",sans-serif;letter-spacing:-.01em;max-width:11ch;text-transform:uppercase}
+    .hero h1 em{color:var(--accent);font-style:normal;text-shadow:0 0 35px rgba(255,59,48,.25)}
+    .hero p{color:var(--sub);max-width:62ch;font-weight:300;margin-top:14px;font-size:clamp(15px,2vw,18px)}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:10px;padding:12px 20px;font-size:14px;font-weight:600;border:1px solid rgba(255,59,48,.55);transition:transform .18s var(--ease),border-color .18s var(--ease),background-color .18s var(--ease)}
+    .btn:hover{transform:translateY(-2px);border-color:rgba(255,112,88,.9);background-color:rgba(255,59,48,.08)}
+    .btn-primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+    .btn-primary:hover{background:var(--accent-2);border-color:var(--accent-2)}
+    .hero-meta{display:grid;gap:16px;padding:22px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,var(--bg-elev),rgba(10,10,12,.5))}
+    .hero-meta dt{color:var(--muted);font:600 11px/1.4 "Inter",monospace;letter-spacing:.12em;text-transform:uppercase}
+    .hero-meta dd{color:var(--text);font-weight:600;margin-top:5px}
+    .hero-meta .row{border-bottom:1px solid var(--line);padding-bottom:14px}
+    .hero-meta .row:last-child{border-bottom:0;padding-bottom:0}
+    main{display:flex;flex-direction:column;gap:72px;padding:0 20px}
+    section{max-width:var(--shell);margin:0 auto;width:100%}
+    .section-head{display:flex;flex-direction:column;gap:6px;margin-bottom:32px}
+    .eyebrow{letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font:600 11px/1.4 "Inter",monospace}
+    h2.section-title{font:700 clamp(26px,4vw,42px)/1.08 "Russo One",sans-serif;text-transform:uppercase}
+    .section-head p{color:var(--sub);max-width:700px;font-weight:300}
+    .cards{display:grid;gap:16px;grid-template-columns:1fr}
+    @media(min-width:640px){.cards{grid-template-columns:repeat(2,1fr)}}
+    @media(min-width:1080px){.cards{grid-template-columns:repeat(3,1fr)}}
+    .card{background:linear-gradient(180deg,rgba(255,59,48,.05),var(--surface));border:1px solid var(--line);border-radius:16px;padding:24px;min-height:160px;transition:transform .25s var(--ease),border-color .25s var(--ease),box-shadow .25s var(--ease)}
+    .card:hover{transform:translateY(-5px);border-color:rgba(255,59,48,.4);box-shadow:0 18px 35px rgba(0,0,0,.55)}
+    .card h3{font:600 18px/1.2 "Russo One",sans-serif;text-transform:uppercase;margin-bottom:8px}
+    .card p{color:var(--sub);font-size:14px;font-weight:300}
+    .icon-wrap{width:44px;height:44px;border-radius:10px;margin-bottom:14px;display:grid;place-items:center;background:rgba(255,59,48,.12);color:var(--accent-2)}
+    .price-list{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surface)}
+    .price-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 22px;border-bottom:1px solid var(--line);transition:background-color .28s var(--ease),padding-left .28s var(--ease)}
+    .price-row:last-child{border-bottom:none}
+    .price-row:hover{background-color:rgba(255,59,48,.06);padding-left:28px}
+    .price-row .name{font-weight:600}
+    .price-row .desc{color:var(--sub);font-size:13px;margin-top:3px}
+    .price-row .val{font-weight:700;color:var(--accent-2);white-space:nowrap}
+    .note{color:var(--sub);font-size:13px;margin-top:14px;font-weight:300}
+    .gallery{display:grid;gap:14px;grid-template-columns:repeat(2,1fr)}
+    @media(min-width:900px){.gallery{grid-template-columns:repeat(3,1fr)}}
+    .gallery figure{position:relative;aspect-ratio:4/3;border-radius:14px;overflow:hidden;border:1px solid var(--line);opacity:0;transform:translateY(26px);transition:opacity .75s var(--ease),transform .75s cubic-bezier(.2,.7,.3,1)}
+    .gallery figure img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+    .gallery figure.show{opacity:1;transform:none}
+    .gallery figure:hover img{transform:scale(1.06)}
+    .reviews-grid{display:grid;gap:16px;grid-template-columns:1fr}
+    @media(min-width:760px){.reviews-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(min-width:1180px){.reviews-grid{grid-template-columns:repeat(3,1fr)}}
+    .review-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;transition:transform .25s var(--ease),border-color .25s var(--ease)}
+    .review-card:hover{transform:translateY(-4px);border-color:rgba(255,59,48,.4)}
+    .stars{color:var(--accent);margin-bottom:10px;letter-spacing:.08em}
+    .review-card p{color:var(--sub);font-size:14px;font-weight:300}
+    .review-card footer{margin-top:12px;font-weight:600;color:var(--text);font-size:14px}
+    .review-card footer span{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+    .lead{background:radial-gradient(900px 600px at 50% -10%,rgba(255,59,48,.18),transparent 62%),linear-gradient(180deg,var(--bg-elev),var(--bg));border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:64px 20px}
+    .lead-inner{max-width:var(--shell);margin:0 auto;display:grid;gap:40px}
+    @media(min-width:980px){.lead-inner{grid-template-columns:1.05fr .95fr}}
+    .form{background:var(--bg-elev);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px;box-shadow:var(--shadow)}
+    .field{display:flex;flex-direction:column;gap:8px}
+    .field label{font-size:13px;color:var(--sub)}
+    .field input,.field textarea,.field select{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:var(--text);font-size:15px}
+    .field textarea{min-height:110px;resize:vertical}
+    .form-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .form-status{color:var(--sub);font-size:13px;font-weight:300}
+    .contacts-grid{display:grid;gap:16px;grid-template-columns:1fr}
+    @media(min-width:760px){.contacts-grid{grid-template-columns:repeat(3,1fr)}}
+    .contact-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px}
+    .contact-card h3{font:600 16px/1.2 "Russo One",sans-serif;text-transform:uppercase;margin-bottom:10px}
+    .contact-card p,.contact-card a{color:var(--sub);font-size:14px;display:block;margin-top:5px}
+    .contact-card a:hover{color:var(--accent)}
+    footer{max-width:var(--shell);margin:0 auto;padding:34px 20px 56px;display:flex;flex-direction:column;gap:10px;color:var(--sub);font-size:13px}
+    footer p{font-weight:300}
+    .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s cubic-bezier(.2,.7,.3,1)}
+    .reveal.in{opacity:1;transform:none}
+    /* animated dumbbells extra */
+    .weights-marquee{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .weight-pill{
+      display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;
+      background:rgba(255,59,48,.1);border:1px solid rgba(255,59,48,.4);color:var(--accent-2);font-size:12px;font-weight:600;
+      transition:transform .25s var(--ease),box-shadow .25s var(--ease);
+    }
+    .weight-pill:hover{transform:translateY(-3px) rotate(-2deg);box-shadow:0 12px 18px rgba(255,59,48,.18)}
+    .floating-gym{position:absolute;right:4%;bottom:9%;width:180px;max-width:32vw;opacity:.16;pointer-events:none;transform-origin:center;animation:rotateSlow 48s linear infinite}
+    @keyframes rotateSlow{to{transform:rotate(360deg)}}
+    @media(max-width:900px){.floating-gym{display:none}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Перейти к содержимому</a>
+  <header>
+    <nav>
+      <a class="brand" href="#top">
+        <span class="brand-mark">
+          <svg class="dumbbell" viewBox="0 0 64 32" aria-hidden="true">
+            <rect x="4" y="14" width="56" height="4"></rect>
+            <rect x="2" y="10" width="6" height="12" rx="2"></rect>
+            <rect x="12" y="8" width="8" height="16" rx="3"></rect>
+            <rect x="44" y="8" width="8" height="16" rx="3"></rect>
+            <rect x="56" y="10" width="6" height="12" rx="2"></rect>
+          </svg>
+        </span>
+        <span>Викинг</span>
+      </a>
+      <div class="nav-links">
+        <a href="#services">Услуги</a>
+        <a href="#prices">Цены</a>
+        <a href="#works">Зал</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#lead">Запись</a>
+        <a href="#contacts">Контакты</a>
+      </div>
+    </nav>
+  </header>
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <div>
+        <p class="eyebrow">Спорт-клуб • Екатеринбург • ВИЗ</p>
+        <h1>Викинг <em>ready</em> к тренировке</h1>
+        <p>Тренажёрный зал, персональные занятия, бокс и каратэ, танцы и группы для детей, взрослых и пенсионеров. Без толкучки, честные цены и вежливые администраторы.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="tel:+79097023023">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            +7 909 702-30-23
+          </a>
+          <a class="btn" href="#services">Услуги и программы</a>
+          <a class="btn btn-ghost" href="https://wa.me/79097023023" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+        <div class="weights-marquee">
+          <span class="weight-pill">Занятия: 10:00–22:00</span>
+          <span class="weight-pill">День: 350 ₽</span>
+          <span class="weight-pill">Вечер: 400 ₽</span>
+          <span class="weight-pill">Месяц: 2 500 ₽</span>
+        </div>
+      </div>
+      <dl class="hero-meta">
+        <div class="row"><dt>Режим</dt><dd>Ежедневно 10:00–22:00</dd></div>
+        <div class="row"><dt>Адрес</dt><dd>Красноуральская ул., 23, 2 этаж</dd></div>
+        <div class="row"><dt>Оплата</dt><dd>Картой / наличными / QR</dd></div>
+        <div class="row"><dt>Рейтинг</dt><dd>4.4 / 18 оценок (2ГИС)</dd></div>
+        <div class="row"><dt>Парковка</dt><dd>24 места рядом</dd></div>
+      </dl>
+    </div>
+    <svg class="floating-gym" viewBox="0 0 120 120" aria-hidden="true">
+      <circle cx="60" cy="60" r="48" fill="none" stroke="rgba(255,59,48,.4)" stroke-width="2"/>
+      <path d="M40 60h40M60 40v40M34 34l52 52M86 34L34 86" stroke="rgba(255,59,48,.15)" stroke-width="2"/>
+      <circle cx="60" cy="60" r="10" fill="rgba(255,59,48,.22)"/>
+    </svg>
+  </section>
+  <main id="main">
+    <section class="stats reveal">
+      <div class="stats-grid">
+        <div class="stat"><div class="num">10:00–22:00</div><div class="lbl">ежедневно</div></div>
+        <div class="stat"><div class="num">2500 ₽</div><div class="lbl">месяц безлимит</div></div>
+        <div class="stat"><div class="num">350 ₽</div><div class="lbl">дневной визит</div></div>
+        <div class="stat"><div class="num">300 ₽</div><div class="lbl">гостевой визит</div></div>
+      </div>
+    </section>
+    <section id="services">
+      <div class="section-head">
+        <span class="eyebrow">Программы</span>
+        <h2 class="section-title">Услуги</h2>
+        <p>Индивидуальный подход и комфорт: группы малы, тренажёры не пропадают, есть отдельные направления для детей и людей старшего возраста. Подробности — по телефону или в WhatsApp.</p>
+      </div>
+      <div class="cards">
+        <article class="card reveal">
+          <div class="icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16v-8a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8"/><path d="M4 20h16"/><path d="M8 16v4M16 16v4"/></svg>
+          </div>
+          <h3>Тренажёрный зал</h3>
+          <p>Основные тренажёры продублированы, можно прокачать всё тело. Дневные и вечерние разовые визиты, безлимит на месяц/год.</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/></svg>
+          </div>
+          <h3>Персональные тренировки</h3>
+          <p>Индивидуальная программа и помощь тренера. 12 занятий — выгоднее, можно планировать нагрузку заранее.</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Групповые занятия</h3>
+          <p>Программы для детей, взрослых и пенсионеров (практически бесплатно). Малые группы, attentive тренеры.</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.4 14.4 9.6 9.6"/><path d="M18.6 18.6 21.5 21.5"/><path d="M2.5 2.5 5.4 5.4"/><rect x="2" y="14" width="6" height="6" rx="1"/><rect x="16" y="4" width="6" height="6" rx="1"/></svg>
+          </div>
+          <h3>Бокс и карате</h3>
+          <p>Секции под руководством опытных тренеров — для подростков и взрослых. Развитие силы, координации и уверенности.</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 9-5-9-5-9 5 9 5z"/><path d="m12 14 6.16-3.422a12.083 12.083 0 0 1 .665 6.479A11.952 11.952 0 0 0 12 20.055a11.952 11.952 0 0 0-6.824-2.998 12.078 12.078 0 0 1 .665-6.479L12 14z"/></svg>
+          </div>
+          <h3>Танцевальные программы</h3>
+          <p>Бачата, растяжка и общая физподготовка. Отличный вариант для мышц спины, гибкости и координации.</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m22 8-5 5M17 8h5v5"/></svg>
+          </div>
+          <h3>Гостевой визит</h3>
+          <p>Подходит для знакомства с залом. Тренажёры и зоны полностью доступны, консультация администратора включена.</p>
+        </article>
+      </div>
+      <div class="weights-marquee" style="margin-top:30px">
+        <span class="weight-pill">24 парковочных места рядом</span>
+        <span class="weight-pill">Душевая в раздевалке</span>
+        <span class="weight-pill">Ост. «Красноуральская» в 3 мин (350 м)</span>
+        <span class="weight-pill">Транспорт: трамвай 7/5, автобус 32/31</span>
+      </div>
+    </section>
+    <section id="prices">
+      <div class="section-head">
+        <span class="eyebrow">Тренажёрный зал</span>
+        <h2 class="section-title">Цены</h2>
+        <p>Точный прайс из карточки 2ГИС. Итоговая стоимость абонемента может отличаться по акциям; уточняйте при визите.</p>
+      </div>
+      <div class="price-list">
+        <div class="price-row"><div><div class="name">Разовый визит — день</div><div class="desc">С 10:00 до 16:00</div></div><div class="val">350 ₽</div></div>
+        <div class="price-row"><div><div class="name">Разовый визит — вечер</div><div class="desc">С 16:00 до 22:00</div></div><div class="val">400 ₽</div></div>
+        <div class="price-row"><div><div class="name">Абонемент «Безлимит» — 1 месяц</div><div class="desc">Полный доступ к залу</div></div><div class="val">2 500 ₽</div></div>
+        <div class="price-row"><div><div class="name">Абонемент «Безлимит» — 3 месяца</div><div class="desc">Выгоднее на 13%</div></div><div class="val">6 000 ₽</div></div>
+        <div class="price-row"><div><div class="name">Абонемент «Безлимит» — 6 месяцев</div><div class="desc">Выгоднее на 20%</div></div><div class="val">9 000 ₽</div></div>
+        <div class="price-row"><div><div class="name">Абонемент «Безлимит» — 12 месяцев</div><div class="desc">Годовой план, максимальная экономия</div></div><div class="val">14 000 ₽</div></div>
+        <div class="price-row"><div><div class="name">Гостевой визит</div><div class="desc">Знакомство с залом</div></div><div class="val">300 ₽</div></div>
+      </div>
+      <p class="note">Цены из карточки Викинг в 2ГИС. Информация о ценах не является публичной офертой.</p>
+    </section>
+    <section id="works">
+      <div class="section-head">
+        <span class="eyebrow">Зал и атмосфера</span>
+        <h2 class="section-title">Фотогалерея</h2>
+        <p>Фото из 2ГИС: интерьер, тренажёры, зоны для групп и персональных тренировок. Ремонт регулярно обновляется.</p>
+      </div>
+      <div class="gallery">
+        <figure><img src="assets/photos/work-1.jpg" alt="Спорт-клуб Викинг, интерьер зала 1" loading="lazy"></figure>
+        <figure><img src="assets/photos/work-2.jpg" alt="Спорт-клуб Викинг, интерьер зала 2" loading="lazy"></figure>
+        <figure><img src="assets/photos/work-3.jpg" alt="Спорт-клуб Викинг, зона тренажёров 1" loading="lazy"></figure>
+        <figure><img src="assets/photos/work-4.jpg" alt="Спорт-клуб Викинг, зона тренажёров 2" loading="lazy"></figure>
+        <figure><img src="assets/photos/work-5.jpg" alt="Спорт-клуб Викинг, групповые занятия" loading="lazy"></figure>
+        <figure><img src="assets/photos/work-6.jpg" alt="Спорт-клуб Викинг, атмосфера зала" loading="lazy"></figure>
+      </div>
+    </section>
+    <section id="reviews">
+      <div class="section-head">
+        <span class="eyebrow">Отзывы</span>
+        <h2 class="section-title">Нас рекомендуют</h2>
+        <p>Реальные отзывы клиентов с 2ГИС: рейтинг 4.4 / 18 оценок.</p>
+      </div>
+      <div class="reviews-grid">
+        <article class="review-card reveal">
+          <div class="stars">★★★★★</div>
+          <p>Супер зал, очень комфортно заниматься, потому что народу мало, нет толкучки и драки за тренажёры, администраторы очень приветливые.</p>
+          <footer>Полина Вейсман <span>Подтверждено посещением</span></footer>
+        </article>
+        <article class="review-card reveal">
+          <div class="stars">★★★★★</div>
+          <p>Отличный спортзал. Снаряды дублируются, основные тренажёры присутствуют, можно прокачать всё тело. И цена адекватная.</p>
+          <footer>Иван Александрович <span>Подтверждено посещением</span></footer>
+        </article>
+        <article class="review-card reveal">
+          <div class="stars">★★★★☆</div>
+          <p>Очень приятное сочетание доступности и компактности. Удобно выбрать время с минимальным количеством посетителей и провести отличную тренировку.</p>
+          <footer>Very berry <span>Отзыв с 2ГИС</span></footer>
+        </article>
+        <article class="review-card reveal">
+          <div class="stars">★★★★★</div>
+          <p>Очень нравится, хожу как на работу. Не людно, удобно тренироваться. Да, не изысканный ремонт, но и цены не как в премиум-клубах.</p>
+          <footer>Александра Ковальчук <span>Отзыв с 2ГИС</span></footer>
+        </article>
+        <article class="review-card reveal">
+          <div class="stars">★★★★★</div>
+          <p>Милый камерный фитнес-клуб. Недорогие цены, для студентов самое то. Свеженькие тренажёры, вежливые администраторы.</p>
+          <footer>Анонимно (2ГИС) <span>Отзыв с 2ГИС</span></footer>
+        </article>
+        <article class="review-card reveal">
+          <div class="stars">★★★★★</div>
+          <p>Хороший фитнес-клуб. Вежливые администраторы, доброжелательные тренеры, которые могут показать и подсказать. Уютный, проходимость небольшая.</p>
+          <footer>Ирина Попова <span>Отзыв с 2ГИС</span></footer>
+        </article>
+      </div>
+    </section>
+    <section class="lead" id="lead">
+      <div class="lead-inner">
+        <div class="section-head">
+          <span class="eyebrow">Запись</span>
+          <h2 class="section-title">Рассчитать стоимость / оставить заявку</h2>
+          <p>Напишите свои контакты и цель тренировок. Администратор поможет с абонементом, персональными занятиями и расписанием. Рабочее время: ежедневно 10:00–22:00.</p>
+        </div>
+        <form class="form" id="leadForm" novalidate>
+          <div class="field">
+            <label for="name">Имя</label>
+            <input id="name" name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться">
+          </div>
+          <div class="field">
+            <label for="phone">Телефон или мессенджер</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="+7 ___ ___-__-__">
+          </div>
+          <div class="field">
+            <label for="service">Интересует</label>
+            <select id="service" name="service">
+              <option value="">Выберите</option>
+              <option value="абонемент">Абонемент в тренажёрный зал</option>
+              <option value="дневной">Разовый дневной визит</option>
+              <option value="вечерний">Разовый вечерний визит</option>
+              <option value="персональные">Персональные тренировки</option>
+              <option value="бокс">Бокс / карате</option>
+              <option value="танцы">Танцевальные программы</option>
+              <option value="гостевой">Гостевой визит</option>
+              <option value="другое">Другое</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="msg">Комментарий</label>
+            <textarea id="msg" name="msg" placeholder="Например: цели, опыт, convenient time"></textarea>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Отправить заявку</button>
+            <a class="btn" href="tel:+79097023023">Позвонить</a>
+            <a class="btn btn-ghost" href="https://wa.me/79097023023" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+          <p class="form-status" id="formStatus" aria-live="polite"></p>
+          <p class="form-status">Нажимая «Отправить», вы соглашаетесь на обработку персональных данных.</p>
+        </form>
+      </div>
+    </section>
+    <section id="contacts">
+      <div class="section-head">
+        <span class="eyebrow">Контакты</span>
+        <h2 class="section-title">Как нас найти</h2>
+      </div>
+      <div class="contacts-grid">
+        <article class="contact-card">
+          <h3>Адрес</h3>
+          <p>Екатеринбург, Красноуральская ул., 23, 2 этаж</p>
+          <p>ВИЗ, Верх-Исетский район</p>
+          <p>Ежедневно 10:00–22:00</p>
+        </article>
+        <article class="contact-card">
+          <h3>Телефон</h3>
+          <a href="tel:+79097023023">+7 909 702-30-23</a>
+          <a href="https://wa.me/79097023023" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="https://t.me/+79097023023" target="_blank" rel="noopener">Telegram</a>
+          <a href="https://vk.com/ekat_viking" target="_blank" rel="noopener">ВКонтакте</a>
+        </article>
+        <article class="contact-card">
+          <h3>2ГИС</h3>
+          <a href="https://2gis.ru/ekaterinburg/firm/70000001075876116" target="_blank" rel="noopener">Открыть в 2ГИС</a>
+          <p>Остановка «Красноуральская» — 3 мин, 350 м. Парковка рядом (24 места).</p>
+        </article>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>© 2026 Викинг — спорт-клуб. Екатеринбург, Красноуральская ул., 23.</p>
+    <p>Сайт информационный. Цены не являются публичной офертой и могут меняться. Обновлено по данным 2ГИС (15 сентября 2026).</p>
+  </footer>
+  <script>
+    const form = document.getElementById('leadForm');
+    const status = document.getElementById('formStatus');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.phone.value.trim()) {
+        status.textContent = 'Укажите телефон или способ связи.';
+        form.phone.focus();
+        return;
+      }
+      const data = {
+        source: 'viking-gym-site',
+        name: form.name.value.trim(),
+        phone: form.phone.value.trim(),
+        car: '',
+        service: form.service.value.trim(),
+        msg: form.msg.value.trim(),
+        url: location.href
+      };
+      status.textContent = 'Отправляем заявку...';
+      try {
+        const res = await fetch('/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+        if (res.ok) {
+          status.textContent = 'Заявка отправлена. Спасибо! Администратор свяжется с вами.';
+          form.reset();
+        } else { throw new Error('bad status'); }
+      } catch (err) {
+        const tel = '+79097023023';
+        const text = encodeURIComponent(`Заявка с сайта Викинг. Имя: ${data.name||'-'}. Телефон: ${data.phone||'-'}. Интерес: ${data.service||'-'}. Комментарий: ${data.msg||'-'}. Ссылка: ${data.url}`);
+        window.location.href = `tel:${tel}`;
+        status.textContent = 'Не удалось отправить онлайн. Откроется звонок — наберите или напишите нам в WhatsApp/VK.';
+      }
+    });
+
+    // reveal-on-scroll
+    const revealTargets = document.querySelectorAll('main > section, .card, .review-card, .price-row, .contact-card');
+    revealTargets.forEach((el,i) => {
+      el.classList.add('reveal');
+      el.style.transitionDelay = (i % 9 * 70) + 'ms';
+    });
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+      }, { threshold:.12, rootMargin:'0px 0px -40px 0px' });
+      revealTargets.forEach(el => io.observe(el));
+    } else {
+      revealTargets.forEach(el => el.classList.add('in'));
+    }
+    // gallery stagger
+    const gallery = document.querySelector('.gallery');
+    if (gallery && 'IntersectionObserver' in window) {
+      const gIO = new IntersectionObserver((entries) => {
+        entries.forEach(en => {
+          if (en.isIntersecting) {
+            gallery.querySelectorAll('figure').forEach((f,i) => setTimeout(() => f.classList.add('show'), i*120));
+            gIO.unobserve(en.target);
+          }
+        });
+      }, { threshold:.12 });
+      gIO.observe(gallery);
+    } else { document.querySelectorAll('.gallery figure').forEach(f => f.classList.add('show')); }
+
+    // hero floating hint (count-up not needed)
+  </script>
+  <style>
+    .stats-grid{display:grid;gap:14px;grid-template-columns:repeat(2,1fr)}
+    @media(min-width:760px){.stats-grid{grid-template-columns:repeat(4,1fr)}}
+    .stat{background:linear-gradient(180deg,rgba(255,59,48,.06),var(--surface));border:1px solid var(--line);border-radius:14px;padding:18px;text-align:center}
+    .stat .num{font:700 22px/1 "Russo One",sans-serif;color:var(--accent-2);margin-bottom:6px}
+    .stat .lbl{color:var(--sub);font-size:13px;font-weight:300}
+    .stats{max-width:var(--shell)}
+  </style>
+</body>
+</html>

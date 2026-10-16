@@ -18,6 +18,7 @@ nav{display:flex;align-items:center;gap:22px;padding:18px 0;}
 .hero{position:relative;min-height:100vh;display:grid;align-items:center;background:#000;overflow:hidden;}
 .hero .shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
 .hero video{opacity:.36;filter:brightness(.5) saturate(.8);}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.5) saturate(.85);z-index:0;}
 .hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.9)),radial-gradient(65% 45% at 20% 25%,rgba(255,43,34,.32),transparent 72%);}
 .hero-grid{position:relative;z-index:2;width:100%;padding:132px 0 86px;display:grid;gap:48px;align-items:end;}
 @media(min-width:980px){.hero-grid{grid-template-columns:1.2fr .8fr;gap:56px;}}
@@ -128,7 +129,7 @@ footer{padding:38px 0 60px;border-top:1px solid var(--line);background:#000;}
 </nav></div></header>
 
 <section class="hero" id="top">
-<video class="hero video" src="assets/video/hero.mp4" autoplay muted loop playsinline poster="assets/photos/work-1.jpg"></video>
+<img class="hero-bg" src="assets/photos/hero-bg.jpg" alt="Фон спорт-клуба Викинг" loading="eager" decoding="async">
 <div class="overlay"></div>
 <div class="shell hero-grid">
 <div>
